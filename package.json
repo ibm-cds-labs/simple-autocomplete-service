@@ -1,0 +1,21 @@
+{
+  "name": "simple-autocomplete-service",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "async": "^1.5.2",
+    "cfenv": "1.0.x",
+    "compression": "^1.6.1",
+    "cors": "^2.7.1",
+    "express": "4.13.x",
+    "multer": "^0.1.8",
+    "redis": "^2.5.2"
+  },
+  "repository": {},
+  "engines": {
+    "node": "4.2.x"
+  }
+}
