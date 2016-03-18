@@ -37,25 +37,24 @@ app.get("/", isloggedin(), function(req,res) {
 });
 
 // upload  CSV
-app.post('/api/upload',  isloggedin(), multipart, function(req, res) {
+app.post('/api/:name',  isloggedin(), multipart, function(req, res) {
   var obj = {
     files: req.files,
     body: req.body,
   };
   console.log(obj);
-  autocomplete.importFile(obj.files.file.path, obj.body.name, function(err, data) {
+  autocomplete.importFile(obj.files.file.path, req.params.name, function(err, data) {
     res.send({ok:true, summary: data});
   });
 });
 
-app.get("/api/list", function(req,res) {
+app.get("/api", function(req,res) {
   autocomplete.list(function(err,data) {
     res.send(data);
   });
 });
 
-app.get("/api/autocomplete/:name", cors(), function(req,res) {
-  console.log(req.params);
+app.get("/api/:name", cors(), function(req,res) {
   autocomplete.query(req.params.name, req.query.term, function(err, data) {
     if( err) {
       res.send([]);
@@ -63,6 +62,12 @@ app.get("/api/autocomplete/:name", cors(), function(req,res) {
       res.send(data);
     }
   }); 
+});
+
+app.del("/api/:name", function(req, res) {
+  autocomplete.deleteIndex(req.params.name, function(err, data) {
+    res.send({"ok": true});
+  });
 });
 
 // get the app environment from Cloud Foundry
