@@ -135,7 +135,8 @@
         for(var i in data) {
           $( "#" + data[i] ).autocomplete({
             source: "/api/" + data[i],
-            minLength: 1
+            minLength: 1,
+            delay:0
           });
         }
         console.log(data);
