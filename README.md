@@ -1,14 +1,64 @@
-# Node.js Starter Overview
+# Simple Autocomplete Service
 
-The Node.js Starter demonstrates a simple, reusable Node.js web application based on the Express framework.
+A Node.js app that uses an attached Redis database to provide an autocomplete API for data uploaded as text files. Multiple separate autocomplete indexes are supported.
 
-## Run the app locally
+The autocomplete API is CORS-enabled, so that it can be accessed from any web page and conforms to the jQuery autocomplete standard.
 
-1. [Install Node.js][]
-2. Download and extract the starter code from the Bluemix UI
-3. cd into the app directory
-4. Run `npm install` to install the app's dependencies
-5. Run `npm start` to start the app
-6. Access the running app in a browser at http://localhost:6001
+## API
 
-[Install Node.js]: https://nodejs.org/en/download/
+### GET /api
+
+Returns a JSON array of autocomplete indexes that are available
+
+e.g.
+
+```js
+[]
+```
+
+or 
+
+```
+["animals","trees","actors"]
+```
+
+### GET /api/:name?term=
+
+Parameters
+
+* term - the search term to autocomplete
+
+Returns a JSON array of possible autocompletions
+
+e.g.
+
+```
+["Pedro","Pejman Montazeri","Pepe Reina","Pepe","Per Mertesacker","Peter Odemwingie"]
+```
+
+### POST /api/:name (multi-part file upload)
+
+Parameters
+
+* file - the text file containing a list of items to be added to the auto-complete index
+
+
+### DELETE /api/:name
+
+Delete the named autocomplete index.
+
+## Lockdown mode
+
+If you have uploaded your content into the Simple Autocomplete Service but now want only the `GET /api/:name` endpoint to continue working, then you can enable "Lockdown mode".
+
+Simply set an environment variable called `LOCKDOWN` to `true` before running the Simple Autocomplete Service:
+
+```sh
+export LOCKDOWN=true
+node app.js
+```
+
+or set a custom environment variable in Bluemix.
+
+This prevents your data being modified until lockdown mode is switched off again, by removing the environment variable.
+
