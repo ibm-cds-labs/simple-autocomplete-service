@@ -1,0 +1,16 @@
+.ui-autocomplete {
+  background-color: white;
+  max-width:300px;
+  list-style: none;
+  border:1px solid #666;
+  padding:0;
+}
+
+.ui-autocomplete li {
+  padding:3px;
+}
+
+.ui-autocomplete li:hover {
+  background-color: #ccc;
+}
+.ui-helper-hidden-accessible { display:none; }

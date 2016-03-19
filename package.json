@@ -14,7 +14,10 @@
     "multer": "^0.1.8",
     "redis": "^2.5.2"
   },
-  "repository": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/glynnbird/simple-autocomplete-service"
+  },
   "engines": {
     "node": "4.2.x"
   }
