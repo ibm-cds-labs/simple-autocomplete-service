@@ -2,6 +2,8 @@
 
 A Node.js app that uses an attached Redis database to provide an autocomplete API for data uploaded as text files. Multiple separate autocomplete indexes are supported.
 
+![demo gif](https://raw.githubusercontent.com/glynnbird/simple-autocomplete-service/master/public/img/demo.gif)
+
 The autocomplete API is CORS-enabled, so that it can be accessed from any web page and conforms to the [jQuery autocomplete](http://api.jqueryui.com/autocomplete/) standard.
 
 ## API
