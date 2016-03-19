@@ -12,7 +12,8 @@
     "cors": "^2.7.1",
     "express": "4.13.x",
     "multer": "^0.1.8",
-    "redis": "^2.5.2"
+    "redis": "^2.5.2",
+    "request": "^2.69.0"
   },
   "repository": {
     "type": "git",

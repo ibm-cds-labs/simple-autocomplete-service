@@ -29,9 +29,15 @@ app.get("/", isloggedin(), function(req,res) {
 app.post('/api/:name',  isloggedin(), multipart, function(req, res) {
 
   if (req.files && typeof req.files.file == 'object') {
+    console.log("Import from file", req.files.file.path,"into index",req.body.name)
     autocomplete.importFile(req.files.file.path, req.params.name, function(err, data) {
       res.send({ok:true, summary: data});
     });
+  } else if (req.body && req.body.name && req.body.url) {
+    console.log("Import from URL", req.body.url,"into index",req.body.name)
+    autocomplete.importURL(req.body.url, req.body.name, function(err, data) {
+      res.send({ok:true}); 
+    }); 
   } else {
     res.status(404).send({ok: false});
   }

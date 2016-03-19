@@ -64,33 +64,58 @@ function getList() {
   });
 }
 
+function submitTheForm(theform, name, callback) {
+  var data = new FormData(theform); 
+  if (!name || name.length==0) {
+    return callback("You must supply an index name", null);
+  }
+  var req  = {
+    url: '/api/' + encodeURIComponent(name),
+    data: data,
+    cache: false,
+    contentType: false,
+    processData: false,
+    type: 'POST'
+  };
+  $.ajax(req).done(function() {
+    callback(null, null)
+  });
+};
+
+// on ready
 $(function() {
+  
+  // load the list of indexes
   getList();
 
+  // intercept submission of upload form
   $('#uploadform').submit( function(e) {
       e.preventDefault();
-      $('#submitbutton').prop("disabled", true)
-      var data = new FormData(this); 
-      console.log(data);
-      var name = filterIndexName($('#name').val());
-      if (!name || name.length==0) {
-        alert("You must supply an index name");
-        $('#submitbutton').prop("disabled", false);
-        return false;
-      }
-      var req  = {
-        url: '/api/' + encodeURIComponent(name),
-        data: data,
-        cache: false,
-        contentType: false,
-        processData: false,
-        type: 'POST',     
-        success: function(data){ 
-          getList()
+      var name = $('#name').val() || "";
+      submitTheForm(this, name, function(err, data) {
+        if (err) {
+          alert(err);
+          $('#submitbutton').prop("disabled", false);
+          return false;
         }
-      };
-      $.ajax(req).done(function() {
+        getList();
         $('#submitbutton').prop("disabled", false);
       });
-  });                 
+  });  
+  
+  
+  //  intercept submission of url form
+  $('#submiturlform').submit( function(e) {
+    e.preventDefault();
+    var name = $('#urlname').val() || "";
+    submitTheForm(this, name, function(err, data) {
+      if (err) {
+        alert(err);
+        $('#submiturlbutton').prop("disabled", false);
+        return false;
+      }
+      getList();
+      $('#submiturlbutton').prop("disabled", false);
+    });
+  });                
 });
