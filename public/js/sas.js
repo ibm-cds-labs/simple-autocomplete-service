@@ -92,6 +92,7 @@ $(function() {
   $('#uploadform').submit( function(e) {
       e.preventDefault();
       var name = $('#name').val() || "";
+      $('#submitbutton').prop("disabled", true);
       submitTheForm(this, name, function(err, data) {
         if (err) {
           alert(err);
@@ -108,6 +109,7 @@ $(function() {
   $('#submiturlform').submit( function(e) {
     e.preventDefault();
     var name = $('#urlname').val() || "";
+    $('#submiturlbutton').prop("disabled", true);
     submitTheForm(this, name, function(err, data) {
       if (err) {
         alert(err);
@@ -118,4 +120,12 @@ $(function() {
       $('#submiturlbutton').prop("disabled", false);
     });
   });                
+  
+  $('.btn-shortcut').on('click', function() {
+    var url = this.getAttribute("data-url");
+    var name = this.getAttribute("data-name");
+    $('#urlname').val(name);
+    $('#url').val(url);
+  })
+  
 });
