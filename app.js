@@ -56,7 +56,7 @@ app.get("/api", isloggedin(), function(req,res) {
 });
 
 // query the data set ":name".
-// :name - the name of the date set to query
+// :name - the name of the data set to query
 // term - the search term 
 app.get("/api/:name", cors(), function(req,res) {
   autocomplete.query(req.params.name, req.query.term, function(err, data) {
@@ -68,7 +68,7 @@ app.get("/api/:name", cors(), function(req,res) {
 });
 
 // delete a data set
-// :name - the name of the date set to deletes
+// :name - the name of the data set to deletes
 app.delete("/api/:name", isloggedin(), function(req, res) {
   autocomplete.deleteIndex(req.params.name, function(err, data) {
     res.send({"ok": true});
