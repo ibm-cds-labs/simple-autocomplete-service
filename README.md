@@ -38,12 +38,14 @@ e.g.
 ["Pedro","Pejman Montazeri","Pepe Reina","Pepe","Per Mertesacker","Peter Odemwingie"]
 ```
 
-### POST /api/:name (multi-part file upload)
+### POST /api/:name
 
-Parameters
+Parameters, one of:
 
 * file - the text file containing a list of items to be added to the auto-complete index
+* or, url - the url of the file containing a list of items to be added to the auto-complete index
 
+N.B the form type needs to be `enctype="multipart/form-data"`
 
 ### DELETE /api/:name
 
