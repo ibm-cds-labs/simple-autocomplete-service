@@ -25,9 +25,11 @@ app.get("/", isloggedin(), function(req,res) {
   res.sendFile('./public/index.html');
 });
 
-// upload  CSV file containing strings to be indexed
+// import a new data set either with a file upload or a url parameter
+// :name - the name of the data set to upload
+// file - the uploaded file
+// url - the url of the file to fetch
 app.post('/api/:name',  isloggedin(), multipart, function(req, res) {
-
   if (req.files && typeof req.files.file == 'object') {
     console.log("Import from file", req.files.file.path,"into index",req.body.name)
     autocomplete.importFile(req.files.file.path, req.params.name, function(err, data) {
@@ -41,9 +43,9 @@ app.post('/api/:name',  isloggedin(), multipart, function(req, res) {
   } else {
     res.status(404).send({ok: false});
   }
-
 });
 
+// get a list of data sets
 app.get("/api", isloggedin(), function(req,res) {
   autocomplete.list(function(err,data) {
     if (err) {
@@ -53,6 +55,9 @@ app.get("/api", isloggedin(), function(req,res) {
   });
 });
 
+// query the data set ":name".
+// :name - the name of the date set to query
+// term - the search term 
 app.get("/api/:name", cors(), function(req,res) {
   autocomplete.query(req.params.name, req.query.term, function(err, data) {
     if (err) {
@@ -62,6 +67,8 @@ app.get("/api/:name", cors(), function(req,res) {
   }); 
 });
 
+// delete a data set
+// :name - the name of the date set to deletes
 app.delete("/api/:name", isloggedin(), function(req, res) {
   autocomplete.deleteIndex(req.params.name, function(err, data) {
     res.send({"ok": true});
