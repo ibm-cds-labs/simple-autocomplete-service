@@ -1,18 +1,103 @@
 .ui-autocomplete {
-  background-color: white;
-  max-width:300px;
+  background-color: #ffffff;
+  color: #222222;
+  border: 1px solid #0699cc;
+  cursor: default;
+  display: block;
+  left: 0;
   list-style: none;
-  border:1px solid #666;
-  padding:0;
+  margin: 0;
+  max-height: 300px;
+  outline: none;
+  overflow: auto;
+  padding: 0;
+  position: absolute;
+  top: 0;
+  z-index: 100;
 }
 
-.ui-autocomplete li {
-  padding:3px;
+.ui-autocomplete .ui-menu-item {
+  cursor: pointer;
+  margin: 0;
+  min-height: 0;
+  padding: 3px 1em 3px .4em;
+  position: relative;
 }
 
-.ui-autocomplete li:hover {
-  background-color: #ccc;
+.ui-autocomplete .ui-state-focus {
+  background-color: #41d6c3;
 }
-.ui-helper-hidden-accessible { display:none; }
 
-.group-gap { margin-left:50px;}
+.ui-helper-hidden-accessible {
+  display: none;
+}
+
+.capped-layout {
+  overflow: hidden;
+}
+
+.table_basic-container {
+  overflow-x: auto;
+}
+
+.guide-example {
+  margin: 0;
+  padding: 2.5em;
+}
+
+.list_unordered {
+  padding-left: inherit;
+}
+
+.remote-files {
+  margin-top: 0;
+}
+
+.remote-files.hidden {
+  display: none;
+}
+
+.remote-files > button {
+  margin-bottom: 1em;
+  margin-right: 3em;
+}
+
+.remote-files > button:last-child {
+  margin-right: 0;
+}
+
+button.type_link {
+  background-color: transparent;
+  border: 0 none;
+  cursor: pointer;
+  font-size: 1em;
+  padding: 0;
+}
+
+#thetable td {
+  width: 20%;
+  max-width: 20%;
+}
+
+.button_primary.disabled,
+.button_primary[disabled],
+.button_primary.disabled:hover,
+.button_primary[disabled]:hover {
+  background-color: #41d6c3;
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.tabbed-panel_tab.ui-state-default {
+  background-color: transparent;
+  opacity: 0.5;
+}
+.tabbed-panel_tab.ui-state-active {
+  background-color: #f9f9fb;
+  border-top: 2px solid #008571;
+  opacity: initial;
+}
+
+.tabbed-panel_panel.bg_light-tint {
+  background-color: #f9f9fb;
+}
