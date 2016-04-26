@@ -147,7 +147,7 @@ $(function() {
   });
 
   $('#file').change(function() {
-    $('.input_file-handle').html($(this).val());
+    $('.input_file-handle').html($(this).val().split('\\').pop());
   });
 
   $( ".tabbed-panel" ).tabs();

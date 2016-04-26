@@ -79,6 +79,10 @@ button.type_link {
   max-width: 20%;
 }
 
+#thetable td + td {
+  border-left: 0px none;
+}
+
 .button_primary.disabled,
 .button_primary[disabled],
 .button_primary.disabled:hover,
@@ -100,4 +104,8 @@ button.type_link {
 
 .tabbed-panel_panel.bg_light-tint {
   background-color: #f9f9fb;
+}
+
+.ui-tabs-anchor:focus {
+  outline: none;
 }
