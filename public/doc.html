@@ -90,6 +90,20 @@
             </ul>
           </figure>
           
+          <h2 class="type_subhead">Lockdown mode</h2>
+          <p>To make your auto-complete indexes read-only, simply set an environment variable "LOCKDOWN" to be "true". 
+             This will leave only the "GET /api/:name" endpoint working e.g.</p>
+          <figure class="guide-example theme_light bg_light-tint">
+            <p class="type_copy">LOCKDOWN=true node app.js</p>
+          </figure>          
+          <p>or in Bluemix:</p>
+          <ul>
+            <li>Go to "Environment Variables"</li>
+            <li>Open the "User-Defined" tab</li>
+            <li>Click "Add" and add a "LOCKDOWN" variable with a value of "true"</li>
+            <li>Click "Save" and after a restart, your autocomplete service will be locked down</li>
+          </ul>
+            
         </section>
 <!-- end API -->
 
