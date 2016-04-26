@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>IBM Cloud Data Services | Simple Autocomplete Service</title>
+
+    <link href="css/master.css" rel="stylesheet">
+    <link href="css/sas.css" rel="stylesheet">
+  </head>
+
+  <body class="capped-layout">
+    <header class="capped-layout_cap app-banner">
+      <a class="app-banner_title" rel="home" href="https://developer.ibm.com/clouddataservices">IBM Cloud Data Services // Dev</a>
+    </header>
+
+    <div class="capped-layout_body bookend-layout">
+      <nav class="bookend-layout_bookend theme_dark">
+        <ul class="tree-nav">
+          <li class="tree-nav_item">
+            <a class="tree-nav_link" href="/">Simple Autocomplete Service</a>
+            <ul class="tree-nav">
+              <li class="tree-nav_item"><a class="tree-nav_link" href="/index.html#indexlist">Autocomplete Indexes</a></li>
+              <li class="tree-nav_item"><a class="tree-nav_link" href="/index.html#indexadd">Create an Index</a></li>
+            </ul>
+          </li>
+          <li class="tree-nav_item">
+            <a class="tree-nav_link" href="/doc.html">Documentation</a>
+            <ul class="tree-nav">
+              <li class="tree-nav_item"><a class="tree-nav_link" href="#apilist">API</a></li>
+              <li class="tree-nav_item"><a class="tree-nav_link" href="#codesamples">Code Samples</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="bookend-layout_body theme_light bg_white">
+        <header class="layout_section theme_light">
+          <h1 class="type_heading">Documentation</h1>
+          <p class="type_copy">
+            The autocomplete API is CORS-enabled, so that it can be accessed from any web page.
+          </p>
+        </header>
+
+<!-- start API -->
+        <section class="layout_section">
+          <div id="apilist"></div>
+          <h2 class="type_heading type_mark">API</h2>
+          
+          <h2 class="type_subhead">GET /api</h2>
+          <figure class="guide-example theme_light bg_light-tint">
+            <p class="type_copy">Returns a JSON array of autocomplete indexes that are available</p>
+          </figure>
+          
+          <h2 class="type_subhead">GET /api/:name?term=searchterm</h2>
+          <figure class="guide-example theme_light bg_light-tint">
+            <p class="type_copy">Returns a JSON array of possible autocompletions from the named index</p>
+            <p class="type_copy">Parameters:</p>
+            <ul class="list_unordered">
+              <li><code>name</code> - the name of the index to search</li>
+              <li><code>searchterm</code> - the search term to autocomplete</li>
+            </ul>
+          </figure>
+          
+          <h2 class="type_subhead">POST /api/:name</h2>
+          <figure class="guide-example theme_light bg_light-tint">
+            <p class="type_copy">Create a named autocomplete index</p>
+            <p class="type_copy">Parameters:</p>
+            <ul class="list_unordered">
+              <li><code>name</code> - the name of the index to create</li>
+            </ul>
+            <p class="type_copy">
+              The request body needs to be <code>enctype="multipart/form-data"</code>
+              and must include one of the following:
+            </p>
+            <ul class="list_unordered">
+              <li><code>file</code> - the text file containing a list of items to be added to the autocomplete index</li>
+              <li><code>url</code> - the url of the file containing a list of items to be added to the autocomplete index</li>
+            </ul>
+          </figure>
+          
+          <h2 class="type_subhead">DELETE /api/:name</h2>
+          <figure class="guide-example theme_light bg_light-tint">
+            <p class="type_copy">Delete the named autocomplete index.</p>
+            <p class="type_copy">Parameters:</p>
+            <ul class="list_unordered">
+              <li><code>name</code> - the name of the index to delete</li>
+            </ul>
+          </figure>
+          
+        </section>
+<!-- end API -->
+
+<!-- start code samples -->
+        <section class="layout_section">
+          <hr>
+          <div id="codesamples"></div>
+          <h2 class="type_heading type_mark">Code Samples</h2>
+          <p class="type_copy">
+            The Simple Autocomplete Service conforms to the
+            <a href="http://api.jqueryui.com/autocomplete/" class="type_link" target="_blank">jQuery autocomplete</a>
+            standard, but can easily be incorporated with other frameworks (e.g., Angular, etc.). Code samples
+            coming soon.
+          </p>
+          
+          <h2 class="type_subhead">jQuery</h2>
+          <figure class="theme_light bg_light-tint">
+            <code class="type_codeblock">
+$("#inputFieldId").autocomplete({
+    source: "/api/" + encodeURIComponent(indexName),
+    minLength: 1,
+    delay:0
+});
+            </code>
+          </figure>
+        </section>
+<!-- end code samples -->
+      </div>
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-2.2.2.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+    <script src="js/sas.js"></script>
+  </body>
+</html>
