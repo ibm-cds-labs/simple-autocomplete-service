@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>IBM Cloud Data Services | Simple Autocomplete Service</title>
+
+    <link href="css/master.css" rel="stylesheet">
+    <link href="css/sas.css" rel="stylesheet">
+  </head>
+
+  <body class="capped-layout">
+    <header class="capped-layout_cap app-banner">
+      <a class="app-banner_title" rel="home" href="https://developer.ibm.com/clouddataservices">IBM Cloud Data Services // Dev</a>
+    </header>
+
+    <div class="capped-layout_body bookend-layout">
+      <nav class="bookend-layout_bookend theme_dark">
+        <ul class="tree-nav">
+          <li class="tree-nav_item">
+            <a class="tree-nav_link" href="/">Simple Autocomplete Service</a>
+            <ul class="tree-nav">
+              <li class="tree-nav_item"><a class="tree-nav_link" href="/autocomplete.html">Autocomplete Indexes</a></li>
+              <li class="tree-nav_item"><a class="tree-nav_link" href="#indexadd">Create an Index</a></li>
+            </ul>
+          </li>
+          <li class="tree-nav_item">
+            <a class="tree-nav_link" href="/doc.html">Documentation</a>
+            <ul class="tree-nav">
+              <li class="tree-nav_item"><a class="tree-nav_link" href="/doc.html#apilist">API</a></li>
+              <li class="tree-nav_item"><a class="tree-nav_link" href="/doc.html#lockdown">Lockdown Mode</a></li>
+              <li class="tree-nav_item"><a class="tree-nav_link" href="/doc.html#codesamples">Code Samples</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="bookend-layout_body theme_light bg_white">
+        <header class="layout_section theme_light">
+          <h1 class="type_heading">Autocomplete Indexes</h1>
+          <p class="type_copy">
+            A Node.js app that uses an attached Redis database to provide an autocomplete API for
+            data uploaded as text files. Multiple separate autocomplete indexes are supported.
+          </p>
+        </header>
+
+<!-- start index listing -->
+        <section class="layout_section">
+          <div id="indexlist"></div>
+          <h2 class="type_heading type_mark">Current Indexes</h2>
+          <p class="type_copy">The following indexes are currently available</p>
+          <div id="thetable" class="table_basic-container">
+<!-- table of indexes goes here -->
+          </div>
+        </section>
+<!-- end index listing -->
+
+<!-- start create index -->
+        <section class="layout_section">
+          <hr>
+          <div id="indexadd"></div>
+          <h2 class="type_heading type_mark">Create an Index</h2>
+          <p class="type_copy">Indexes can be created by uploading a local file or adding a remote URL</p>
+
+          <div class="tabbed-panel">
+            <ul class="tabbed-panel_tab-group">
+              <li class="tabbed-panel_tab"><a href="#indexfromfileupload">Local File</a></li>
+              <li class="tabbed-panel_tab"><a href="#indexfromfileurl">Remote File</a></li>
+            </ul>
+<!-- start upload file panel -->
+            <div id="indexfromfileupload" class="tabbed-panel_panel bg_light-tint">
+              <form id="uploadform" class="form" action="/api/upload" method="post" enctype="multipart/form-data">
+                <fieldset class="form_field">
+                  <label class="form_label" for="name">Index name</label>
+                  <input id="name" class="input_text"  type=text name="name" value="test" required>
+                </fieldset>
+                <fieldset class="form_field">
+                  <label class="form_label" for="file">File</label>
+                  <input id="file" class="input_file" type="file" name="file" required>
+                  <label class="input_file-handle" for="file">Select a File</label>
+                </fieldset>
+                <div class="button_group">
+                  <button id="submitbutton" type="submit" class="button_primary">Upload</button>
+                </div>
+              </form>
+            </div>
+<!-- end upload file panel -->
+<!-- start add url panel -->
+            <div id="indexfromfileurl" class="tabbed-panel_panel bg_light-tint">
+              <p class="type_copy">
+                No data. No problem. <button class="type_link" onclick="toggle('.remote-files')">We got you covered.</button>
+              </p>
+              <div class="button_group remote-files hidden">
+                <button type="button" class="button_secondary btn-shortcut"
+                        data-url="https://raw.githubusercontent.com/glynnbird/simple-autocomplete-service/master/data/countries.txt" 
+                        data-name="countries">Countries (194)</button>
+                <button type="button" class="button_secondary btn-shortcut"
+                        data-url="https://raw.githubusercontent.com/glynnbird/simple-autocomplete-service/master/data/uktowns.txt"
+                        data-name="towns">UK Towns (992)</button>
+                <button type="button" class="button_secondary btn-shortcut"
+                        data-url="https://raw.githubusercontent.com/glynnbird/simple-autocomplete-service/master/data/uspresidents.txt"
+                        data-name="presidents">US Presidents (43)</button>
+                <button type="button" class="button_secondary btn-shortcut"
+                        data-url="https://raw.githubusercontent.com/glynnbird/simple-autocomplete-service/master/data/names.txt"
+                        data-name="names">Names (4995)</button>
+              </div>
+              <form id="submiturlform" class="form" action="/api/uploadurl" method="post" enctype="multipart/form-data">
+                <fieldset class="form_field">
+                  <label class="form_label" for="urlname">Index name</label>
+                  <input id="urlname" class="input_text"  type=text name="name" value="test" required>
+                </fieldset>
+                <fieldset class="form_field">
+                  <label class="form_label" for="url">URL</label>
+                  <input id="url" class="input_text"  type="url" name="url" placeholder="Enter a URL" required>
+                </fieldset>
+                <div class="button_group">
+                  <button id="submiturlbutton" type="submit" class="button_primary">Add</button>
+                </div>
+              </form>
+            </div>
+<!-- end add url panel -->
+          </div>
+        </section>
+<!-- end create index -->
+
+      </div>
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-2.2.2.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+    <script src="js/sas.js"></script>
+  </body>
+</html>
