@@ -132,18 +132,96 @@ node app.js
           <p class="type_copy">
             The Simple Autocomplete Service conforms to the
             <a href="http://api.jqueryui.com/autocomplete/" class="type_link" target="_blank">jQuery autocomplete</a>
-            standard, but can easily be incorporated with other frameworks (e.g., Angular, etc.). Code samples
-            coming soon.
+            standard, but can easily be incorporated with other frameworks (e.g., Angular, etc.).
           </p>
-          
+
+<!-- start jquery sample -->
           <h2 class="type_subhead">jQuery</h2>
-          <code class="type_codeblock">
-$("#inputFieldId").autocomplete({
-    source: "/api/" + encodeURIComponent(indexName),
-    minLength: 1,
-    delay:0
+          <figure class="guide-example theme_light bg_light-tint">
+            <p class="type_copy">
+              HTML
+            </p>
+            <code class="type_codeblock">
+&lt;input id="searchinput"&gt;
+            </code>
+            <p class="type_copy">
+              JavaScript
+            </p>
+            <code class="type_codeblock">
+$("#searchinput").autocomplete({
+  source: "http://a-simple-autocomplete.com/api/" + encodeURIComponent(indexName)
 });
-          </code>
+            </code>
+          </figure>
+<!-- end jquery sample -->
+
+<!-- start angularjs sample -->
+          <h2 class="type_subhead">AngularJS</h2>
+          <figure class="guide-example theme_light bg_light-tint">
+            <p class="type_copy">
+              HTML
+            </p>
+            <code class="type_codeblock">
+&lt;input autocomplete&gt;
+            </code>
+            <p class="type_copy">
+              JavaScript
+            </p>
+            <code class="type_codeblock">
+myModule.directive('autocomplete', function() {
+  return function(scope, elt) {
+    elt.autocomplete({
+      source: "http://a-simple-autocomplete.com/api/" + encodeURIComponent(indexName)
+    });
+  };
+});
+            </code>
+          </figure>
+<!-- end angularjs sample -->
+
+<!-- start vanilla javascript sample -->
+          <h2 class="type_subhead">Vanilla JavaScript</h2>
+          <p class="type_copy">
+            Using the <a class="type_link" target="_blank" href="https://github.com/Pixabay/JavaScript-autoComplete">JavaScript-autoComplete</a> plugin.
+          </p>
+          <figure class="guide-example theme_light bg_light-tint">
+            <p class="type_copy">
+              HTML
+            </p>
+            <code class="type_codeblock">
+&lt;input id="searchinput"&gt;
+            </code>
+            <p class="type_copy">
+              JavaScript
+            </p>
+            <code class="type_codeblock">
+var xmlhttp = new XMLHttpRequest();
+
+new autoComplete({
+  selector: '#searchinput',
+  source: function(term, response) {
+    var searchurl = "http://a-simple-autocomplete.com/api/" + encodeURIComponent(indexName);
+    
+    xmlhttp.open("GET", searchurl, true);
+    
+    xmlhttp.onreadystatechange = function(e) {
+      if (xmlhttp.readyState == 4) {
+        if (xmlhttp.status == 200) {
+          var suggestions = JSON.parse(xmlhttp.responseText);
+          response(suggestions);
+        }
+        else {
+          response([]);
+        }
+      }
+    };
+    
+    xmlhttp.send();
+  }
+});
+            </code>
+          </figure>
+<!-- end vanilla javascript sample -->
         </section>
 <!-- end code samples -->
       </div>
