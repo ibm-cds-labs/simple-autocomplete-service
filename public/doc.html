@@ -22,14 +22,15 @@
           <li class="tree-nav_item">
             <a class="tree-nav_link" href="/">Simple Autocomplete Service</a>
             <ul class="tree-nav">
-              <li class="tree-nav_item"><a class="tree-nav_link" href="/index.html#indexlist">Autocomplete Indexes</a></li>
-              <li class="tree-nav_item"><a class="tree-nav_link" href="/index.html#indexadd">Create an Index</a></li>
+              <li class="tree-nav_item"><a class="tree-nav_link" href="/autocomplete.html">Autocomplete Indexes</a></li>
+              <li class="tree-nav_item"><a class="tree-nav_link" href="/autocomplete.html#indexadd">Create an Index</a></li>
             </ul>
           </li>
           <li class="tree-nav_item">
             <a class="tree-nav_link" href="/doc.html">Documentation</a>
             <ul class="tree-nav">
               <li class="tree-nav_item"><a class="tree-nav_link" href="#apilist">API</a></li>
+              <li class="tree-nav_item"><a class="tree-nav_link" href="#lockdown">Lockdown Mode</a></li>
               <li class="tree-nav_item"><a class="tree-nav_link" href="#codesamples">Code Samples</a></li>
             </ul>
           </li>
@@ -89,23 +90,39 @@
               <li><code>name</code> - the name of the index to delete</li>
             </ul>
           </figure>
-          
-          <h2 class="type_subhead">Lockdown mode</h2>
-          <p>To make your auto-complete indexes read-only, simply set an environment variable "LOCKDOWN" to be "true". 
-             This will leave only the "GET /api/:name" endpoint working e.g.</p>
-          <figure class="guide-example theme_light bg_light-tint">
-            <p class="type_copy">LOCKDOWN=true node app.js</p>
-          </figure>          
-          <p>or in Bluemix:</p>
-          <ul>
-            <li>Go to "Environment Variables"</li>
-            <li>Open the "User-Defined" tab</li>
-            <li>Click "Add" and add a "LOCKDOWN" variable with a value of "true"</li>
-            <li>Click "Save" and after a restart, your autocomplete service will be locked down</li>
-          </ul>
-            
         </section>
 <!-- end API -->
+
+<!-- start lockdown -->
+        <section class="layout_section">
+          <hr>
+          <div id="lockdown"></div>
+          <h2 class="type_heading type_mark">Lockdown Mode</h2>
+          <p class="type_copy">
+            To make your auto-complete indexes read-only, simply set an environment variable <code>LOCKDOWN</code> to be <code>true</code>. 
+             This will leave only the <code>GET /api/:name</code> endpoint working e.g.
+          </p>
+          <code class="type_codeblock">
+export LOCKDOWN=true
+node app.js
+          </code>
+          <p class="type_copy">
+            or in IBM Bluemix:
+          </p>
+          <figure class="guide-example theme_light bg_light-tint">
+            <ul class="list_unordered">
+              <li>Go to <code>Environment Variables</code></li>
+              <li>Open the <code>User-Defined</code> tab</li>
+              <li>Click <code>Add</code></li>
+              <li>Add a <code>LOCKDOWN</code> variable with a value of <code>true</code></li>
+              <li>Click <code>Save</code></li>
+            </ul>
+            <p class="type_copy">
+              After a restart, your autocomplete service will be locked down.
+            </p>
+          </figure>
+        </section>
+<!-- end lockdown -->
 
 <!-- start code samples -->
         <section class="layout_section">
@@ -120,15 +137,13 @@
           </p>
           
           <h2 class="type_subhead">jQuery</h2>
-          <figure class="theme_light bg_light-tint">
-            <code class="type_codeblock">
+          <code class="type_codeblock">
 $("#inputFieldId").autocomplete({
     source: "/api/" + encodeURIComponent(indexName),
     minLength: 1,
     delay:0
 });
-            </code>
-          </figure>
+          </code>
         </section>
 <!-- end code samples -->
       </div>
