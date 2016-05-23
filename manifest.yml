@@ -1,8 +1,9 @@
 applications:
-- path: .
+- name: simple-autocomplete-service
+  path: .
   memory: 256M
   instances: 1
   domain: mybluemix.net
-  name: simple-autocomplete-service
-  host: simple-autocomplete-service
-  disk_quota: 1024M
+  random-route: true
+  disk_quota: 512M
+  command: node app.js
