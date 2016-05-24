@@ -6,7 +6,7 @@
   },
   "dependencies": {
     "async": "^1.5.2",
-    "cf-deployment-tracker-client": "0.0.8",
+    "cf-deployment-tracker-client": "^0.x",
     "cfenv": "1.0.x",
     "compression": "^1.6.1",
     "cors": "^2.7.1",
