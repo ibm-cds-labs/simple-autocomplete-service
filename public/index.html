@@ -49,7 +49,7 @@
             suggesting some words that begin with the letters we've typed.
           </p>
           <p class="type_copy">
-            The more characters we type the smaller the list gets and we can click on
+            The more characters we type, the smaller the list gets and we can click on
             the correct value at any time.
           </p>
           <p class="type_copy">
@@ -61,7 +61,7 @@
           </ol>
           <p class="type_copy">
             The first solution is best for small data sets, but when the list of possible
-            values is larger (say hundreds, thousands or even millions of options), then
+            values is larger (say hundreds, thousands, or even millions of options), then
             the client-server approach is much more efficient. It is this second scenario
             that the Simple Autocomplete Service is built to cover.
           </p>
@@ -76,8 +76,8 @@
             web app built with the
             <a class="type_link" target="_blank" href="http://expressjs.com/">Express</a>
             framework that allows multiple data sets to be uploaded to a cloud service
-            which then operates a fast and efficient autocomplete API. We'll see how it
-            works in detail later in the article, but the tl;dr is it uses a
+            which then operates a fast and efficient autocomplete API. To understand exactly how it
+            works, read [Introducing the Simple Autocomplete Service](https://wp.me/p6nwVO-1Vn), but the tl;dr is it uses a
             <a class="type_link" target="_blank" href="http://redis.io/">Redis</a>
             in-memory database to store and index the data.
           </p>
@@ -100,11 +100,11 @@
           <p class="type_copy">
             Notice how the urls show the two individual data sets that have been uploaded
             ("countries" and "presidents"). The search string that you want to lookup is
-            supplied as a 'term' parameter. The API can then be plumbed into a webpage to
+            supplied as a `term` parameter. The API can then be plumbed into a webpage to
             provide auto-complete on a form control.
           </p>
           <p class="type_copy">
-           The application can be run locally in conjunction with a local Redis instance or can be deployed to the
+           You can run the application locally in conjunction with a local Redis instance or deploy to the
            <a class="type_link" target="_blank" href="https://bluemix.net/">IBM Bluemix</a>
            platform-as-a-service with a connected
            <a class="type_link" target="_blank" href="https://www.compose.io/redis/">Redis by Compose</a>
