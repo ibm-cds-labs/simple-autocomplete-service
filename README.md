@@ -1,6 +1,6 @@
 # Simple Autocomplete Service
 
-A Node.js app that uses an attached Redis database to provide an autocomplete API for data uploaded as text files. Multiple separate autocomplete indexes are supported.
+A Node.js app that uses an attached [Redis](http://redis.io/) database to provide an autocomplete API for data uploaded as text files. Multiple separate autocomplete indexes are supported.
 
 ![demo gif](https://raw.githubusercontent.com/ibm-cds-labs/simple-autocomplete-service/master/public/img/autocomplete.gif)
 
@@ -18,7 +18,7 @@ The fastest way to deploy this application to Bluemix is to click the **Deploy t
 ## Running the app locally
 Clone this repository then run `npm install` to add the Node.js libraries required to run the app.
 
-You will also need to have access to a Redis server (either running locally, or elsewhere).
+You will also need to have access to a [Redis](http://redis.io/) server (either running locally, or elsewhere).
 
 You will then need to set some environemt variables to tell the Simple Autocomplete Service how to connect to your Redis server:
 
