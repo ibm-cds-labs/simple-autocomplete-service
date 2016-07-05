@@ -12,6 +12,9 @@
     "cors": "^2.7.1",
     "express": "4.13.x",
     "multer": "^0.1.8",
+    "passport": "^0.3.2",
+    "passport-anonymous": "^1.0.1",
+    "passport-http": "^0.3.0",
     "redis": "^2.5.2",
     "request": "^2.69.0"
   },

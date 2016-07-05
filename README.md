@@ -15,6 +15,23 @@ The fastest way to deploy this application to Bluemix is to click the **Deploy t
 
 **Don't have a Bluemix account?** If you haven't already, you'll be prompted to sign up for a Bluemix account when you click the button.  Sign up, verify your email address, then return here and click the the **Deploy to Bluemix** button again. Your new credentials let you deploy to the platform and also to code online with Bluemix and Git. If you have questions about working in Bluemix, find answers in the [Bluemix Docs](https://www.ng.bluemix.net/docs/).
 
+## Running the app locally
+Clone this repository then run `npm install` to add the Node.js libraries required to run the app.
+
+You will also need to have access to a Redis server (either running locally, or elsewhere).
+
+You will then need to set some environemt variables to tell the Simple Autocomplete Service how to connect to your Redis server:
+
+* `export SAS_REDIS_HOST='localhost/6379'` - This is required, but does not have to be localhost
+* `export SAS_REDIS_USERNAME='redis_username'` - This is not required, depends on your Redis server
+* `export SAS_REDIS_PASSWORD='redis_password'` - This is not required, depends on your Redis server
+
+Then run:
+
+```sh
+node app.js
+```
+
 ## API
 
 ### GET /api
@@ -75,3 +92,13 @@ or set a custom environment variable in Bluemix.
 
 This prevents your data being modified until lockdown mode is switched off again, by removing the environment variable.
 
+If you wish to edit your data, but do not want to disable lockdown mode, you can set two more environment variables:
+
+* `SAS_LOCKDOWN_USERNAME`
+* `SAS_LOCKDOWN_PASSWORD`
+
+When these are set, you will be able to access the UI and the API by providing a matching username and password. If you are accessing the UI via your browser, you will be prompted to enter the username and password, if you are accessing the API, you can provide these details as part of your request:
+
+```bash
+curl -X GET http://<yourdomain>/api --user <username>:<password>
+```
