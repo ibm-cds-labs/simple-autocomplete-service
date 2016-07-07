@@ -8,6 +8,9 @@ var express = require('express'),
 // multi-part uploads 
 var multipart = multer({ dest: process.env.TMPDIR, limits: { files: 1, fileSize: 100000000 }});
  
+// posted body parser
+var bodyParser = require('body-parser')({extended:true})
+
 // cfenv provides access to your Cloud Foundry environment
 var cfenv = require('cfenv');
 
@@ -43,6 +46,18 @@ app.post('/api/:name',  isloggedin(), multipart, function(req, res) {
   } else {
     res.status(404).send({ok: false});
   }
+});
+
+// add a new value to an existing data set
+app.put('/api/:name', isloggedin(), bodyParser, function(req, res) {
+  
+  autocomplete.append(req.params.name, req.body.term, function(err, data) {
+    if (err) {
+      return res.send(err);
+    }
+    res.send({ ok: true })
+  })
+
 });
 
 // get a list of data sets
