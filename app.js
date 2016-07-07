@@ -5,6 +5,10 @@ var express = require('express'),
   isloggedin = require('./lib/isloggedin.js'),
   autocomplete = require('./lib/autocomplete.js');
 
+// Use Passport to provide basic HTTP auth when locked down
+var passport = require('passport');
+passport.use(isloggedin.passportStrategy());
+
 // multi-part uploads 
 var multipart = multer({ dest: process.env.TMPDIR, limits: { files: 1, fileSize: 100000000 }});
  
@@ -17,22 +21,31 @@ var cfenv = require('cfenv');
 // create a new express server
 var app = express();
 
-// serve the files out of ./public as our main files
-app.use(express.static(__dirname + '/public'));
-
 // compress all requests
 app.use(compression());
 
 // get the public UI
-app.get("/", isloggedin(), function(req,res) {
-  res.sendFile('./public/index.html');
+app.get("/", isloggedin.auth, function(req,res) {
+  res.sendFile(__dirname + '/public/index.html');
+});
+
+app.get("/index.html", isloggedin.auth, function(req,res) {
+  res.sendFile(__dirname + '/public/index.html');
+});
+
+app.get("/autocomplete.html", isloggedin.auth, function(req,res) {
+  res.sendFile(__dirname + '/public/autocomplete.html');
+});
+
+app.get("/doc.html", isloggedin.auth, function(req,res) {
+  res.sendFile(__dirname + '/public/doc.html');
 });
 
 // import a new data set either with a file upload or a url parameter
 // :name - the name of the data set to upload
 // file - the uploaded file
 // url - the url of the file to fetch
-app.post('/api/:name',  isloggedin(), multipart, function(req, res) {
+app.post('/api/:name',  isloggedin.auth, multipart, function(req, res) {
   if (req.files && typeof req.files.file == 'object') {
     console.log("Import from file", req.files.file.path,"into index",req.body.name)
     autocomplete.importFile(req.files.file.path, req.params.name, function(err, data) {
@@ -61,7 +74,7 @@ app.put('/api/:name', isloggedin(), bodyParser, function(req, res) {
 });
 
 // get a list of data sets
-app.get("/api", isloggedin(), function(req,res) {
+app.get("/api", isloggedin.auth, function(req,res) {
   autocomplete.list(function(err,data) {
     if (err) {
       return res.send([]);
@@ -84,11 +97,14 @@ app.get("/api/:name", cors(), function(req,res) {
 
 // delete a data set
 // :name - the name of the data set to deletes
-app.delete("/api/:name", isloggedin(), function(req, res) {
+app.delete("/api/:name", isloggedin.auth, function(req, res) {
   autocomplete.deleteIndex(req.params.name, function(err, data) {
     res.send({"ok": true});
   });
 });
+
+// serve the files out of ./public as our main files
+app.use(express.static(__dirname + '/public'));
 
 // get the app environment from Cloud Foundry
 var appEnv = cfenv.getAppEnv();
