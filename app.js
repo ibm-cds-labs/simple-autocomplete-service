@@ -5,6 +5,14 @@ var express = require('express'),
   isloggedin = require('./lib/isloggedin.js'),
   autocomplete = require('./lib/autocomplete.js');
 
+//simple orchestration
+const sos = new require('simple-orchestration-js')({ 
+  url: process.env.ETCD_URL,
+  cert: "cert.ca"
+});
+
+sos.register("cds", "s-a-s", { url: "http://localhost:6003"}, { ttl: 10 });
+
 // Use Passport to provide basic HTTP auth when locked down
 var passport = require('passport');
 passport.use(isloggedin.passportStrategy());
@@ -45,7 +53,7 @@ app.get("/doc.html", isloggedin.auth, function(req,res) {
 // :name - the name of the data set to upload
 // file - the uploaded file
 // url - the url of the file to fetch
-app.post('/api/:name',  isloggedin.auth, multipart, function(req, res) {
+app.post('/api/:name', isloggedin.auth, multipart, function(req, res) {
   if (req.files && typeof req.files.file == 'object') {
     console.log("Import from file", req.files.file.path,"into index",req.body.name)
     autocomplete.importFile(req.files.file.path, req.params.name, function(err, data) {
@@ -62,7 +70,7 @@ app.post('/api/:name',  isloggedin.auth, multipart, function(req, res) {
 });
 
 // add a new value to an existing data set
-app.put('/api/:name', isloggedin(), bodyParser, function(req, res) {
+app.put('/api/:name', isloggedin.auth, bodyParser, function(req, res) {
   
   autocomplete.append(req.params.name, req.body.term, function(err, data) {
     if (err) {
