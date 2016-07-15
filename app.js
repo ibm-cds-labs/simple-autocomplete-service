@@ -11,7 +11,7 @@ const sos = new require('simple-orchestration-js')({
   cert: "cert.ca"
 });
 
-sos.register("cds", "s-a-s", { url: "http://localhost:6003"}, { ttl: 10 });
+sos.register("cds", "s-a-s", { url: "http://localhost:6003", name: "Simple Autocomplete Service" }, { ttl: 10 });
 
 // Use Passport to provide basic HTTP auth when locked down
 var passport = require('passport');
