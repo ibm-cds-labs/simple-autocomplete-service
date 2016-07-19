@@ -3,15 +3,16 @@ var express = require('express'),
   multer = require('multer'),
   compression = require('compression'),
   isloggedin = require('./lib/isloggedin.js'),
-  autocomplete = require('./lib/autocomplete.js');
+  autocomplete = require('./lib/autocomplete.js'),
+  sos = require('./lib/sos.js')();
 
-//simple orchestration
-const sos = new require('simple-orchestration-js')({ 
-  url: process.env.ETCD_URL,
-  cert: "cert.ca"
-});
+// cfenv provides access to your Cloud Foundry environment
+var cfenv = require('cfenv');
 
-sos.register("cds", "s-a-s", { url: "http://localhost:6003", name: "Simple Autocomplete Service" }, { ttl: 10 });
+// get the app environment from Cloud Foundry
+var appEnv = cfenv.getAppEnv();
+
+sos.register("cds", "s-a-s", { url: appEnv.url, name: "Simple Autocomplete Service" }, { ttl: 10 });
 
 // Use Passport to provide basic HTTP auth when locked down
 var passport = require('passport');
@@ -23,8 +24,7 @@ var multipart = multer({ dest: process.env.TMPDIR, limits: { files: 1, fileSize:
 // posted body parser
 var bodyParser = require('body-parser')({extended:true})
 
-// cfenv provides access to your Cloud Foundry environment
-var cfenv = require('cfenv');
+
 
 // create a new express server
 var app = express();
@@ -113,9 +113,6 @@ app.delete("/api/:name", isloggedin.auth, function(req, res) {
 
 // serve the files out of ./public as our main files
 app.use(express.static(__dirname + '/public'));
-
-// get the app environment from Cloud Foundry
-var appEnv = cfenv.getAppEnv();
 
 // start server on the specified port and binding host
 app.listen(appEnv.port, '0.0.0.0', function() {
