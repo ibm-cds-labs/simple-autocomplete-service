@@ -12,7 +12,7 @@ var cfenv = require('cfenv');
 // get the app environment from Cloud Foundry
 var appEnv = cfenv.getAppEnv();
 
-sos.register("cds", "s-a-s", { url: appEnv.url, name: "Simple Autocomplete Service" }, { ttl: 10 });
+sos.register("search", "s-a-s", { url: appEnv.url, name: "Simple Autocomplete Service" }, { ttl: 10 });
 
 // Use Passport to provide basic HTTP auth when locked down
 var passport = require('passport');
