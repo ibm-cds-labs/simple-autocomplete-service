@@ -3,8 +3,8 @@ var express = require('express'),
   multer = require('multer'),
   compression = require('compression'),
   isloggedin = require('./lib/isloggedin.js'),
-  autocomplete = require('./lib/autocomplete.js'),
-  sos = require('./lib/sos.js')();
+  autocomplete = require('./lib/autocomplete.js');
+  
 
 // cfenv provides access to your Cloud Foundry environment
 var cfenv = require('cfenv');
@@ -12,7 +12,10 @@ var cfenv = require('cfenv');
 // get the app environment from Cloud Foundry
 var appEnv = cfenv.getAppEnv();
 
-sos.register("search", "s-a-s", { url: appEnv.url, name: "Simple Autocomplete Service" }, { ttl: 10 });
+if (process.env.ETCD_URL) {
+  var sos = require('./lib/sos.js')()
+  sos.register("search", "s-a-s", { url: appEnv.url, name: "Simple Autocomplete Service" }, { ttl: 10 });
+}
 
 // Use Passport to provide basic HTTP auth when locked down
 var passport = require('passport');
