@@ -34,7 +34,7 @@ node app.js
 
 ## Discovery Mode
 
-Discovery Mode allows the Simple Autocomplete Service to be utilised by the  [Simple Search Service](https://github.com/ibm-cds-labs/simple-search-service) to implement autocompletes from within the Search Service UI. This is achieved by using the [Simple Orchestration](https://github.com/mattcollins84/simple-orchestration-js) module.
+Discovery Mode allows the Simple Autocomplete Service to be utilised by the [Simple Search Service](https://github.com/ibm-cds-labs/simple-search-service) to implement autocompletes from within the Search Service UI. This is achieved by using the [Simple Orchestration](https://github.com/mattcollins84/simple-orchestration-js) module.
 
 ### Enabling discovery mode
 

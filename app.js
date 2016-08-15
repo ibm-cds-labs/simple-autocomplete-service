@@ -14,7 +14,13 @@ var appEnv = cfenv.getAppEnv();
 
 if (process.env.ETCD_URL) {
   var sos = require('./lib/sos.js')()
-  sos.register("search", "s-a-s", { url: appEnv.url, name: "Simple Autocomplete Service" }, { ttl: 10 });
+  sos.register("search", "s-a-s", { 
+    url: appEnv.url, 
+    name: "Simple Autocomplete Service", 
+    username: ((process.env.LOCKDOWN && process.env.SAS_LOCKDOWN_USERNAME) ? process.env.SAS_LOCKDOWN_USERNAME : null),
+    password: ((process.env.LOCKDOWN && process.env.SAS_LOCKDOWN_PASSWORD) ? process.env.SAS_LOCKDOWN_PASSWORD : null) 
+  },
+  { ttl: 10 });
 }
 
 // Use Passport to provide basic HTTP auth when locked down
