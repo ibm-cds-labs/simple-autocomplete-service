@@ -13,8 +13,8 @@ var cfenv = require('cfenv');
 var appEnv = cfenv.getAppEnv();
 
 if (process.env.ETCD_URL) {
-  var sos = require('./lib/sos.js')()
-  sos.register("search", "s-a-s", { 
+  var registry = require('./lib/registry.js')()
+  registry.register("search", "autocomplete-service", { 
     url: appEnv.url, 
     name: "Simple Autocomplete Service", 
     username: ((process.env.LOCKDOWN && process.env.SAS_LOCKDOWN_USERNAME) ? process.env.SAS_LOCKDOWN_USERNAME : null),
