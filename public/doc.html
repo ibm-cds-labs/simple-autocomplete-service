@@ -17,7 +17,7 @@
     </header>
 
     <div class="capped-layout_body bookend-layout">
-      <nav class="bookend-layout_bookend theme_dark">
+      <nav class="bookend-layout_bookend theme_light bg_white">
         <ul class="tree-nav">
           <li class="tree-nav_item">
             <a class="tree-nav_link" href="/">Simple Autocomplete Service</a>
@@ -32,15 +32,15 @@
               <li class="tree-nav_item"><a class="tree-nav_link" href="#apilist">API</a></li>
               <li class="tree-nav_item"><a class="tree-nav_link" href="#lockdown">Lockdown Mode</a></li>
               <li class="tree-nav_item"><a class="tree-nav_link" href="#codesamples">Code Samples</a></li>
-              <li class="tree-nav_item"><a class="tree-nav_link" href="/doc.html#ingredients">Ingredients</a></li>
             </ul>
           </li>
+          <li class="tree-nav_item"><a class="tree-nav_link" href="/ingredients.html">Ingredients</a></li>
         </ul>
       </nav>
 
-      <div class="bookend-layout_body theme_light bg_white">
+      <div class="bookend-layout_body theme_dark">
         <header class="layout_section theme_light">
-          <h1 class="type_heading">Documentation</h1>
+          <h1 class="type_heading type_mark">Documentation</h1>
           <p class="type_copy">
             The autocomplete API is CORS-enabled, so that it can be accessed from any web page.
           </p>
@@ -49,15 +49,15 @@
 <!-- start API -->
         <section class="layout_section">
           <div id="apilist"></div>
-          <h2 class="type_heading type_mark">API</h2>
+          <h2 class="type_heading">API</h2>
           
-          <h2 class="type_subhead">GET /api</h2>
-          <figure class="guide-example theme_light bg_light-tint">
+          <h2 class="type_subhead type_mark">GET /api</h2>
+          <figure class="guide-example">
             <p class="type_copy">Returns a JSON array of autocomplete indexes that are available</p>
           </figure>
           
-          <h2 class="type_subhead">GET /api/:name?term=searchterm</h2>
-          <figure class="guide-example theme_light bg_light-tint">
+          <h2 class="type_subhead type_mark">GET /api/:name?term=searchterm</h2>
+          <figure class="guide-example">
             <p class="type_copy">Returns a JSON array of possible autocompletions from the named index</p>
             <p class="type_copy">Parameters:</p>
             <ul class="list_unordered">
@@ -66,8 +66,8 @@
             </ul>
           </figure>
           
-          <h2 class="type_subhead">POST /api/:name</h2>
-          <figure class="guide-example theme_light bg_light-tint">
+          <h2 class="type_subhead type_mark">POST /api/:name</h2>
+          <figure class="guide-example">
             <p class="type_copy">Create a named autocomplete index</p>
             <p class="type_copy">Parameters:</p>
             <ul class="list_unordered">
@@ -83,8 +83,8 @@
             </ul>
           </figure>
           
-          <h2 class="type_subhead">DELETE /api/:name</h2>
-          <figure class="guide-example theme_light bg_light-tint">
+          <h2 class="type_subhead type_mark">DELETE /api/:name</h2>
+          <figure class="guide-example">
             <p class="type_copy">Delete the named autocomplete index.</p>
             <p class="type_copy">Parameters:</p>
             <ul class="list_unordered">
@@ -98,7 +98,7 @@
         <section class="layout_section">
           <hr>
           <div id="lockdown"></div>
-          <h2 class="type_heading type_mark">Lockdown Mode</h2>
+          <h2 class="type_heading">Lockdown Mode</h2>
           <p class="type_copy">
             To make your auto-complete indexes read-only, simply set an environment variable <code>LOCKDOWN</code> to be <code>true</code>. 
              This will leave only the <code>GET /api/:name</code> endpoint working e.g.
@@ -110,7 +110,7 @@ node app.js
           <p class="type_copy">
             or in IBM Bluemix:
           </p>
-          <figure class="guide-example theme_light bg_light-tint">
+          <figure class="guide-example">
             <ul class="list_unordered">
               <li>Go to <code>Environment Variables</code></li>
               <li>Open the <code>User-Defined</code> tab</li>
@@ -129,7 +129,7 @@ node app.js
         <section class="layout_section">
           <hr>
           <div id="codesamples"></div>
-          <h2 class="type_heading type_mark">Code Samples</h2>
+          <h2 class="type_heading">Code Samples</h2>
           <p class="type_copy">
             The Simple Autocomplete Service conforms to the
             <a href="http://api.jqueryui.com/autocomplete/" class="type_link" target="_blank">jQuery autocomplete</a>
@@ -137,8 +137,8 @@ node app.js
           </p>
 
 <!-- start jquery sample -->
-          <h2 class="type_subhead">jQuery</h2>
-          <figure class="guide-example theme_light bg_light-tint">
+          <h2 class="type_subhead type_mark">jQuery</h2>
+          <figure class="guide-example">
             <p class="type_copy">
               HTML
             </p>
@@ -157,8 +157,8 @@ $("#searchinput").autocomplete({
 <!-- end jquery sample -->
 
 <!-- start angularjs sample -->
-          <h2 class="type_subhead">AngularJS</h2>
-          <figure class="guide-example theme_light bg_light-tint">
+          <h2 class="type_subhead type_mark">AngularJS</h2>
+          <figure class="guide-example">
             <p class="type_copy">
               HTML
             </p>
@@ -181,11 +181,11 @@ myModule.directive('autocomplete', function() {
 <!-- end angularjs sample -->
 
 <!-- start vanilla javascript sample -->
-          <h2 class="type_subhead">Vanilla JavaScript</h2>
+          <h2 class="type_subhead type_mark">Vanilla JavaScript</h2>
           <p class="type_copy">
             Using the <a class="type_link" target="_blank" href="https://github.com/Pixabay/JavaScript-autoComplete">JavaScript-autoComplete</a> plugin.
           </p>
-          <figure class="guide-example theme_light bg_light-tint">
+          <figure class="guide-example">
             <p class="type_copy">
               HTML
             </p>
@@ -225,57 +225,6 @@ new autoComplete({
 <!-- end vanilla javascript sample -->
         </section>
 <!-- end code samples -->
-        
-        <!-- start lockdown -->
-        <section class="layout_section">
-          <hr>
-          <div id="ingredients"></div>
-          <h2 class="type_heading type_mark">Ingredients</h2>
-          <p>
-              The stuff that's baked in.
-          </p>
-
-          <dl>
-              <dt>
-                <mark class="type_mark">Runtime</mark>
-              </dt>
-              <dd>
-                This is a Node.js app running on IBM Bluemix. <a href="https://nodejs.org/en/" class="type_link" target="_blank">Node.js</a> code is JavaScript running on the server side. Node.js has a rich collection of add-on libraries that can be baked into your applications using the <a href="https://npmjs.org/" class="type_link">npm</a> package manager. This application uses the <a href="http://expressjs.com/" class="type_link" target="_blank">Express</a> web framework and the <a href="https://www.npmjs.com/package/redis" class="type_link" target="_blank">Redis</a> npm library, amongst others, to power this web app.
-              </dd>
-              <dt>
-                <mark class="type_mark">Redis Database</mark>
-              </dt>
-              <dd>
-                The Simple Autocomplete Service imports simple text files into a Redis in-memory database running on <a href="https://www.compose.io/redis/" class="type_link" target="_blank">Compose.io</a>. <a href="http://redis.io/" class="type_link" target="_blank">Redis</a> allows us to create a sorted set using the <a href="http://redis.io/commands/zadd" class="type_link" target="_blank">ZADD</a> command which is queried using a combination of <a href="http://redis.io/commands/zrank" class="type_link" target="_blank">ZRANK</a> and <a href="http://redis.io/commands/zrange" class="type_link" target="_blank">ZRANGE</a> to provide a fast, scalable search algorithm.
-              </dd>
-              <dt>
-                <mark class="type_mark">Importing Data</mark>
-              </dt>
-              <dd>
-               Text data files are uploaded to the app where they are handled by the <a href="https://www.npmjs.com/package/multer" class="type_link" target="_blank">Multer</a> package or are fetched from remote URLS using the <a href="https://www.npmjs.com/package/request" class="type_link" target="_blank">Request</a> library.
-              </dd>
-              <dt>
-                <mark class="type_mark">Code</mark>
-              </dt>
-              <dd>
-                Simple Autocomplete Service is an open-source project published under the Apache-2.0 license. This means that it is free for you to use, copy or modify in any way. Feel free to download the <a href="https://github.com/ibm-cds-labs/simple-autocomplete-service/" target="_blank" class="type_link">code on Github</a> and alter it to suit your own purposes before deploying it from your local own machine using the <a href="https://console.ng.bluemix.net/docs/starters/upload_app.html" class="type_link" target="_blank">cf push</a> command. Contributions to this project are welcome: either raise an <a href="https://github.com/ibm-cds-labs/simple-autocomplete-service/issues" class="type_link" target="_blank">Issue on Github</a> or if you fix or improve something, <a href="https://github.com/ibm-cds-labs/simple-autocomplete-service#fork-destination-box" class="type_link" target="_blank">Fork the code</a>, alter it and send us a pull request. 
-              </dd>
-              <dt>
-                <mark class="type_mark">CORS</mark>
-              </dt>
-              <dd>
-                <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS" class="type_link" target="_blank">CORS</a> stands for <i>Cross Origin Resource Sharing</i>. It describes the process of a web application making a request for data after the page has load (sometimes known as AJAX or XHR requests) from another domain name. If my web page (<a href="http://www.glynnbird.com/" class="type_link" target="_blank">www.glynnbird.com</a>) wanted to fetch JSON data from another domain (e.g. <a href="https://simple-autocomplete-service.mybluemix.net/api/countries?term=bo" class="type_link" target="_blank">simple-autocomplete-service.mybluemix.net/api/countries?term=bo</a>) then browser rules would prevent this because the two domain names differ: this is a <i>Cross-origin</i> request. Fortunately, the Simple Autocomplete Service circumvents these restrictions by sending special HTTP headers with each API response to tell the browser that CORS requests are allowed. This makes it very simple for applications on any domain to use the Simple Autocomplete Service as a service for client-side API requests.
-              </dd>
-            </dl>
-
-            <p>
-              To learn more about how these things go together, <a href="https://wp.me/p6nwVO-1Vn" target="_blank" class="type_link">check out the tutorial</a> and <a href="https://github.com/ibm-cds-labs/simple-autocomplete-service/" target="_blank" class="type_link">the README</a>.
-            </p>
-            
-        </section>
-        <!-- end lockdown -->
-        
-        
       </div>
     </div>
     
