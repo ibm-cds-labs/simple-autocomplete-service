@@ -32,6 +32,20 @@ Then run:
 node app.js
 ```
 
+## Service Registry
+
+The Service Registry allows the Simple Autocomplete Service to be utilised by the [Simple Search Service](https://github.com/ibm-cds-labs/simple-search-service) to implement autocompletes from within the Search Service UI. This is achieved by using the [Simple Service Registry](https://github.com/mattcollins84/simple-service-registry) module.
+
+### Enabling the Service Registry
+
+Enabling the Service Registry requires setting an environment variable, `ETCD_URL`. This should be the URL of your Etcd instance including any basic HTTP authentication information
+
+```
+export ETCD_URL='http://username:password@etcd.exmple.com'
+```
+
+If the Service Registry is enabled, the Simple Autocomplete Service will become discoverable by the Simple Search Service.
+
 ## API
 
 ### GET /api
