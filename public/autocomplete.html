@@ -17,7 +17,7 @@
     </header>
 
     <div class="capped-layout_body bookend-layout">
-      <nav class="bookend-layout_bookend theme_dark">
+      <nav class="bookend-layout_bookend theme_light bg_white">
         <ul class="tree-nav">
           <li class="tree-nav_item">
             <a class="tree-nav_link" href="/">Simple Autocomplete Service</a>
@@ -34,12 +34,13 @@
               <li class="tree-nav_item"><a class="tree-nav_link" href="/doc.html#codesamples">Code Samples</a></li>
             </ul>
           </li>
+          <li class="tree-nav_item"><a class="tree-nav_link" href="/ingredients.html">Ingredients</a></li>
         </ul>
       </nav>
 
-      <div class="bookend-layout_body theme_light bg_white">
+      <div class="bookend-layout_body theme_dark">
         <header class="layout_section theme_light">
-          <h1 class="type_heading">Autocomplete Indexes</h1>
+          <h1 class="type_heading type_mark">Autocomplete Indexes</h1>
           <p class="type_copy">
             A Node.js app that uses an attached Redis database to provide an autocomplete API for
             data uploaded as text files. Multiple separate autocomplete indexes are supported.
@@ -49,7 +50,7 @@
 <!-- start index listing -->
         <section class="layout_section">
           <div id="indexlist"></div>
-          <h2 class="type_heading type_mark">Current Indexes</h2>
+          <h2 class="type_heading">Current Indexes</h2>
           <p class="type_copy">The following indexes are currently available</p>
           <div id="thetable" class="table_basic-container">
 <!-- table of indexes goes here -->
@@ -61,7 +62,7 @@
         <section class="layout_section">
           <hr>
           <div id="indexadd"></div>
-          <h2 class="type_heading type_mark">Create an Index</h2>
+          <h2 class="type_heading">Create an Index</h2>
           <p class="type_copy">Indexes can be created by uploading a local file or adding a remote URL</p>
 
           <div class="tabbed-panel">
@@ -70,7 +71,7 @@
               <li class="tabbed-panel_tab"><a href="#indexfromfileurl">Remote File</a></li>
             </ul>
 <!-- start upload file panel -->
-            <div id="indexfromfileupload" class="tabbed-panel_panel bg_light-tint">
+            <div id="indexfromfileupload" class="tabbed-panel_panel theme_light bg_light-tint">
               <form id="uploadform" class="form" action="/api/upload" method="post" enctype="multipart/form-data">
                 <fieldset class="form_field">
                   <label class="form_label" for="name">Index name</label>
@@ -88,7 +89,7 @@
             </div>
 <!-- end upload file panel -->
 <!-- start add url panel -->
-            <div id="indexfromfileurl" class="tabbed-panel_panel bg_light-tint">
+            <div id="indexfromfileurl" class="tabbed-panel_panel theme_light bg_light-tint">
               <p class="type_copy">
                 No data. No problem. <button class="type_link" onclick="toggle('.remote-files')">We got you covered.</button>
               </p>

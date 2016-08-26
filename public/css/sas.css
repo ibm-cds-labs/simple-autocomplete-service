@@ -42,7 +42,7 @@
 
 .guide-example {
   margin: 0;
-  padding: 2.5em;
+  padding: 0.5em 0 1.5em 1.5em;
 }
 
 .list_unordered {
@@ -92,18 +92,10 @@ button.type_link {
   opacity: 0.5;
 }
 
-.tabbed-panel_tab.ui-state-default {
-  background-color: transparent;
-  opacity: 0.5;
-}
 .tabbed-panel_tab.ui-state-active {
   background-color: #f9f9fb;
   border-top: 2px solid #008571;
   opacity: initial;
-}
-
-.tabbed-panel_panel.bg_light-tint {
-  background-color: #f9f9fb;
 }
 
 .ui-tabs-anchor:focus {
