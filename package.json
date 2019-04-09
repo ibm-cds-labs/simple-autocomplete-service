@@ -8,7 +8,7 @@
     "async": "^1.5.2",
     "body-parser": "^1.13.2",
     "cf-deployment-tracker-client": "^0.x",
-    "cfenv": "1.0.x",
+    "cfenv": "1.2.1",
     "compression": "^1.6.1",
     "cors": "^2.7.1",
     "express": "4.13.x",
