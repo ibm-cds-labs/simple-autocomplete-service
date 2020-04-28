@@ -11,7 +11,7 @@
     "cfenv": "1.0.x",
     "compression": "^1.6.1",
     "cors": "^2.7.1",
-    "express": "4.13.x",
+    "express": "4.17.1",
     "multer": "^0.1.8",
     "node-etcd": "^5.0.3",
     "passport": "^0.3.2",
